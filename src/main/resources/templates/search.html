@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<link th:href="@{/css/search.css}" rel="stylesheet"/>
+<link th:href="@{/css/menu.css}" rel="stylesheet"/>
+<link th:href="@{/css/list.css}" rel="stylesheet"/>
+<script th:src="@{https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js}"></script>
+<script th:src="@{/js/search.js}"></script>
+<th:block th:replace="~{/layout/layout :: setContent(~{this::content})}">
+    <th:block th:fragment="content">
+        <div class="listTitle">검색 목록</div>
+        <div class="listGap"></div>
+        <diV class="listContainer">
+            <!-- 검색박스 -->
+            <div class="sort">
+                <div class="sortBox">검색 결과</div>
+                <div class="sortBox">
+                        Sort Results By<br>
+                        <select>
+                            <option>영화</option>
+                            <option>인물</option>
+                        </select>
+                </div>
+            </div><!-- 검색박스 끝 -->
+
+            <!--영화 리스트-->
+                <div class="list">
+                    <div class="searchList" id="movieList" th:each="movieData : ${movieData}">
+                        <div class="posterBox">
+                            <a th:href="@{'/movie/'+${movieData.id}}">
+                                <img th:src="@{'https://image.tmdb.org/t/p/w500'+${movieData.poster_path}}" onerror="this.src='/assets/logo/whiteLogo.png';">
+                            </a>
+                        </div>
+                        <div class="info">
+                            <span>[[${movieData.title}]]</span><br>
+                            <span>[[${movieData.release_date}]]</span><br>
+                            <div>[[${movieData.overview}]]</div>
+                        </div>
+                    </div>
+                    <div class="searchList" id="personList" th:each="personData : ${personData}">
+                        <div class="posterBox">
+                            <a th:href="@{'/actor/'+${personData.id}}">
+                                <img th:src="@{'https://image.tmdb.org/t/p/w500'+${personData.profile_path}}" onerror="this.src='/assets/null/null.png';">
+                            </a>
+                        </div>
+                        <div class="info">
+                            <span>[[${personData.name}]]</span><br>
+                            <span>[[${personData.known_for_department}]]</span><br>
+                        </div>
+                    </div>
+                    <div class="page_wrap">
+                        <div class="page_nation">
+                            <a class="arrow pprev" href="#"></a>
+                            <a class="arrow prev" href="#"></a>
+
+                            <a href="#" class="active">1</a>
+                            <a href="#">2</a>
+                            <a href="#">3</a>
+                            <a href="#">4</a>
+                            <a href="#">5</a>
+                            <a href="#">6</a>
+                            <a href="#">7</a>
+                            <a href="#">8</a>
+                            <a href="#">9</a>
+                            <a href="#">10</a>
+
+                            <a class="arrow next" href="#"></a>
+                            <a class="arrow nnext" href="#"></a>
+                        </div>
+                    </div>
+            </div><!--영화 리스트 끝-->
+        </div>
+    </th:block>
+</th:block>

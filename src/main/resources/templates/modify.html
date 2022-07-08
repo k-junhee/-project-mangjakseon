@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<link th:href="@{/css/modify.css}" rel="stylesheet"/>
+<link th:href="@{/css/menu.css}" rel="stylesheet"/>
+<script th:src="@{/js/modify.js}"></script>
+<th:block th:replace="~{/layout/layout :: setContent(~{this::content})}">
+  <th:block th:fragment="content">
+    <div class="listTitle">회원 정보 수정</div>
+    <div class="listGap"></div>
+    <form id="modAccount" method="post" action="/modify" enctype="multipart/form-data">
+      <input type="hidden" name="memberId" th:value="${dto.memberId}">
+      <input type="hidden" name="fromSocial" th:value="${dto.fromSocial}">
+      <div class="memberInfo">
+        <div class="profileImage">
+          <img th:src="@{${'/profile_images/'+dto.profileImage}}" onerror="this.src='/assets/null/null.png';"/><br>
+          <label for="file">프로필 업로드</label>
+          <input class="profile" type="file" name="profileImgUrl" id="file"><br>
+          <span>[[${dto.nickname}]]</span>
+
+        </div>
+        <div class="infoView">
+          <span>이메일</span><br><input type="text" name="email" th:value="${dto.email}" readonly><br>
+          <span>비밀번호</span><br><input type="password" name="password" id="password" onkeyup="passChk()" placeholder="비밀번호를 입력해주세요"><br>
+          <span id="password_basic" style="font-size:12px; color:blue; font-weight:bold; display:block;">미기입시 현재 비밀번호가 유지됩니다.</span>
+          <span id="password_valid" style="color:red; display:none;">비밀번호는 8자 이상 20자 이하로 입력해주세요.</span>
+          <span id="password_possible" style="color:green; display:none;">사용가능한 비밀번호 입니다.</span><br>
+
+          <span>닉네임</span><br><input type="text" name="nickname" id="nickname" onkeyup="nickChk()" placeholder="닉네임을 입력해주세요"><br>
+          <span id="nickname_basic" style="font-size:12px; color:blue; font-weight:bold;">미기입시 현재 닉네임이 유지됩니다.</span>
+          <span id="nickname_valid" style="color:red; display:none;">닉네임은 특수문자를 제외한 2~8자리여야 합니다.</span>
+          <span id="nickname_possible" style="color:green; display:none;">사용가능한 닉네임 입니다.</span>
+          <span id="nickname_impossible" style="color:red; display:none;">이미 사용중인 닉네임 입니다.</span>
+          <div class="button">
+            <button class="modify" type="button" onclick="checkSubmit()">정보수정</button>
+          </div>
+        </div>
+      </div>
+    </form>
+  </th:block>
+</th:block>

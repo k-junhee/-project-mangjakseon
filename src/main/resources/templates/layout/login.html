@@ -1,0 +1,43 @@
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<th:block th:fragment="setLogin(login)">
+    <head>
+        <script th:src="@{https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js}"></script>
+        <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Open+Sans" />
+    </head>
+    <body>
+    <div>
+        <form class="form-signin" id="formCheck" method="post" th:action="@{/login}">
+            <div class="member_login_input input-container">
+                <input type="text" name="username" id="username" placeholder="이메일" required autofocus>
+            </div>
+
+            <div class="input-container">
+                <input type="password" name="password" id="password" onkeyup="enterKey();" placeholder="비밀번호" required>
+            </div>
+
+            <!--            <div th:if="${error}">-->
+            <!--                <p id="valid" class="alert alert-danger">[[${exception}]]</p>-->
+            <!--            </div>-->
+
+            <span id="check" style="color: red; font-weight:bold; display:none">아이디 또는 비밀번호가 일치하지않습니다.</span>
+
+            <div class="btn-container">
+                <input type="button" id="btn-login" value="로그인" onclick="validCheck()">&nbsp
+                <input type="button" id="btn-sign-up" value="회원가입" onclick="acRegister()">
+            </div>
+
+            <div class="login_api">
+                <a href="/oauth2/authorization/google">
+                    <div class="google-btn">
+                        <div class="google-icon-wrapper">
+                            <img class="google-icon" src="https://upload.wikimedia.org/wikipedia/commons/5/53/Google_%22G%22_Logo.svg"/>
+                        </div>
+                        <p class="btn-text"><b>Sign in with google</b></p>
+                    </div>
+                </a>
+            </div>
+
+        </form>
+    </div>
+    </body>
+</th:block>

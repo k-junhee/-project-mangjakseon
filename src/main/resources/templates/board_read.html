@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<link th:href="@{/css/board_read.css}" rel="stylesheet"/>
+<th:block th:replace="~{/layout/layout :: setContent(~{this::content} )}">
+
+    <th:block th:fragment="content">
+        <style>
+            .btn{
+                background-color: #00C030;
+                border: none;
+                color: white;
+                text-align: center;
+                text-decoration: none;
+                cursor: pointer;
+                border-radius: 3px;
+                font-size: 20px;
+                font-weight: bold;
+            }
+        </style>
+
+        <div class="iframe">
+            <p align="center">
+                <iframe th:src="${dto.iframe}" width="1300px" height="720px" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+            </p>
+        </div>
+
+        <p class="r_title">
+            [[${dto.b_title}]]
+        </p>
+
+        <p class="r_date">
+            [[${#temporals.format(dto.regDate, 'yyyy/MM/dd')}]]
+        </p>
+
+        <br>
+        <p class="r_content">
+            [[${dto.b_content}]]
+        </p>
+        <div sec:authorize="hasRole('ROLE_ADMIN')" >
+            <div class="modify_list">
+                <a th:href="@{/board_modify(bno = ${dto.bno}, page=${requestDTO.page}, type=${requestDTO.type}, keyword =${requestDTO.keyword})}">
+                    <button type="button" class="btn">수정</button>
+                </a>
+                <a th:href="@{/board_list(page=${requestDTO.page} , type=${requestDTO.type}, keyword =${requestDTO.keyword})}">
+                    <button type="button" class="btn">목록</button>
+                </a>
+            </div>
+        </div>
+
+    </th:block>
+
+</th:block>

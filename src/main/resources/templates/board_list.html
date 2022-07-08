@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<link th:href="@{/css/board_list.css}" rel="stylesheet"/>
+<th:block th:replace="~{/layout/layout :: setContent(~{this::content})}">
+
+    <th:block th:fragment="content">
+        <style>
+            infinite{
+                width:60%;
+                margin-left:auto;
+                margin-right:auto;
+            }
+
+            .paging{
+               text-align:center;
+            }
+            li{
+                display:inline;
+            }
+            .paging a{
+                display:inline-block;
+                font-weight:bold;
+                text-decoration:none;
+                padding:7px 8px;
+                border:1px solid #ccc;
+                color:white;
+                background-color:#445566;
+            }
+        </style>
+        <content>
+            <div class="board">
+                <table class="table">
+                    <thead>
+                    <p><h2>걸(乞)작선</h2></p>
+
+                    </thead>
+
+                    <tbody>
+                        <tr th:each="dto : ${result.dtoList}" th:if="${dto != null}" style="border-color:#445566;">
+                            <th scope="row" style="border-color:#445566;">
+                                <a th:href="@{/board_read(bno = ${dto.bno}, page=${result.page})}" >
+                                    <img th:src="@{'/assets/img/'+${dto.s_img}}" class="thumbnail">
+                                </a>
+                            </th>
+                            <td style="border-color:#445566;">
+                                <p class="title">
+                                    <div>
+                                        [[${dto.b_title}]]
+                                    </div>
+                                    <div class="date">[[${#temporals.format(dto.regDate, 'yyyy/MM/dd')}]]</div>
+                                </p>
+                                <p class="content">
+                                    [[${dto.b_content}]]
+                                </p>
+                            </td>
+                            <td>
+                                <p class="count">
+                                    [[${dto.b_count}]]
+                                </p>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </content>
+
+        <footer>
+            <div style="position:fixed; right: 10px; bottom:10px;">
+                <div sec:authorize="hasRole('ROLE_ADMIN')" >
+                    <span>
+                        <button type="button" class="register-button" id="register" data-toggle="modal" data-target="#registerModal"><img src="/assets/img/register.png" style="width:20px;height:17px"></button>
+                    </span>
+                </div>
+            </div>
+
+            <ul class="paging">
+                <li class="page-n" th:if="${result.prev}">
+                    <a class="prevPage page-link" th:href="@{/board_list(page=${result.start -1}, type=${pageRequestDTO.type},keyword=${pageRequestDTO.keyword})}" tabindex="-1">이전</a>
+                </li>
+                <li th:class=" 'page-n' + ${result.page == page?'active':''} " th:each="page: ${result.pageList}">
+                    <a class="page-link" th:href="@{/board_list(page=${page}, type=${pageRequestDTO.type}, keyword=${pageRequestDTO.keyword})}">[[${page}]]</a>
+                </li>
+                <li class="page-n" th:if="${result.next}">
+                    <a class="nextPage page-link" th:href="@{/board_list(page= ${result.end + 1}, type=${pageRequestDTO.type}, keyword=${pageRequestDTO.keyword})}">다음</a>
+                </li>
+            </ul>
+
+
+
+            <!--<span>
+                <button type="button" class="btn btn-primary" id="createsum" data-toggle="modal" data-target="#createsumModal">이미지변환</button>
+            </span>-->
+        </footer>
+
+        <div class="modal" id="registerModal" tabindex="-1" role="dialog" style="border-radius: 3px;">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-body">
+                        <div th:replace="/board_register :: header"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!--<div class="modal" id="createsumModal" tabindex="-1" role="dialog">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-body">
+                        <div th:replace="/board/createsum :: header"></div>
+                    </div>
+                </div>
+            </div>
+        </div>-->
+
+      <!--  <div class="modal" id="readModal" tabindex="-1" role="dialog">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-body">
+                        <div th:replace="/board/read :: header"></div>
+                    </div>
+                </div>
+            </div>
+        </div>-->
+
+
+
+
+    </th:block>
+</th:block>

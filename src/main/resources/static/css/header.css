@@ -1,0 +1,348 @@
+@charset "UTF-8";
+
+*{
+    padding: 0;
+    margin: 0;
+}
+a{
+    text-decoration: none!important;
+}
+body{
+    background-color:  #14181C!important;
+    z-index: -5;
+}
+textarea:focus{
+    background-color:white !important;
+    outline:none;
+}
+input:focus{
+    background-color:white !important;
+    outline:none;
+}
+.Hcontainer{
+    position: relative;
+    padding-top:60px;
+}
+.header{
+    position: fixed;
+    height: 60px;
+    top:0px;
+    background: #14181C;
+    box-shadow: 0 0 0 0 #000000;
+    z-index: 5;
+}
+.headerContainer{
+    /*background-color: blueviolet;*/
+    text-align: center;
+    margin: auto;
+    width: 60%;
+    display: grid;
+    grid-template-columns: 25% 60% 15% ;
+
+}
+.headerLogo{
+    /*background-color: darkkhaki;*/
+    margin: auto;
+}
+.headerLogo img{
+    width: 100%;
+}
+.headerList{
+    /*background-color: chocolate;*/
+    margin-top: 19px;
+    display: flex;
+}
+.listAlign{
+    margin-left: auto;
+    width: 100%;
+    text-align: right;
+}
+.dropdown {
+    position: relative;
+    display: inline-block;
+}
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #445566;
+    width: 150%;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+
+}
+.dropdown-content div {
+    font-size: 12px;
+    font-weight: bold;
+    border-bottom: 1px solid #53687c;
+    height: 30px;
+    margin-top: 10px;
+    margin-left: 0!important;
+}
+.dropdown-content div:hover{
+    color: #374452;
+}
+.dropdown-content div a{
+    margin-left: 0!important;
+}
+.dropdown:hover .dropdown-content {
+    display: block;
+}
+#loginModalButton{
+    text-align: center;
+    text-decoration: none;
+    color: #EBE7DA;
+    margin-left: 15px;
+    cursor: pointer;
+}
+#loginModalButton:hover{
+    color: #cccccc;
+}
+#infoButton{
+    text-align: center;
+    text-decoration: none;
+    color: #EBE7DA;
+    margin-left: 15px;
+    cursor: pointer;
+}
+#infoButton:hover{
+    color: #cccccc;
+}
+.loginIcon img{
+    width: 19%;
+    height: 45px;
+    background-size: cover;
+    border-radius: 50%;
+    cursor:pointer;
+}
+.loginIcon img:hover{
+    filter: brightness(50%);
+
+}
+.headerList a {
+    text-align: center;
+    text-decoration: none;
+    color: #EBE7DA;
+    margin-left: 15px;
+}
+.headerList a:hover{
+    color: #cccccc;
+}
+.headerSearch{
+    /*background-color: aqua;*/
+    margin: auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-top: 14.5px;
+}
+.searchIcon{
+    font-size: 12px;
+    color: #c9c9c9;
+    left: -25px;
+    position: relative;
+    z-index: 1;
+}
+.searchIconScroll{
+    top:-10px!important;
+}
+.searchBar{
+    position: absolute;
+    width: 100px;
+    height: 30px;
+    border-style: none;
+    z-index: 1;
+    margin-left: -30px;
+    background: transparent;
+}
+.searchBar::-ms-clear,.searchBar::-ms-reveal {
+    display:none;
+}
+.searchBarShadow{
+    position: relative;
+    width: 140px;
+    height: 30px;
+    border-radius: 30px;
+    border-style: none;
+    background-color: #ababab;
+    opacity: 0.3;
+}
+.searchBar:focus {
+    outline: none;
+    text-align: left;
+}
+.searchBar:focus ~ .searchBarShadow {
+    background-color: #ffffff;
+    opacity: 0.7;
+    transition: all 0.3s;
+}
+.searchBar:focus ~ .searchIcon {
+    color: #6e6e6e;
+    transition: all 0.3s;
+}
+.header:hover .searchBarShadow{
+    background-color: #ffffff;
+    opacity: 0.7;
+    transition: all 0.3s;
+}
+.header:hover .searchIcon{
+    color: #6e6e6e;
+    transition: all 0.3s;
+}
+.submit{
+    display: none;
+}
+.modal-body{
+    border-radius: 0 0 7px 7px;
+}
+.modal-content{
+    background: none!important;
+}
+.modal-header{
+    background-color: #445566;
+    border-bottom: 2px solid #53687c !important;
+}
+.modal-title{
+    color: white;
+}
+.modal-body{
+    background-color: #445566;
+}
+.input-container{
+    text-align: center;
+}
+#username{
+    background-color: #CCDDEE;
+    width: 88%;
+    height: 40px;
+    border-style: none;
+    border-radius: 3px;
+    z-index: 1;
+    margin-bottom: 10px;
+}
+#password{
+    background-color: #CCDDEE;
+    width: 88%;
+    height: 40px;
+    border-style: none;
+    border-radius: 3px;
+    z-index: 1;
+    margin-bottom: 10px;
+}
+#username:focus{
+    background-color: #ffffff;
+    outline: none !important;
+    box-shadow: none !important;
+}
+#password:focus{
+    background-color: #ffffff;
+    outline: none !important;
+    box-shadow: none !important;
+}
+.btn-container{
+    text-align: center;
+}
+#btn-login, #btn-sign-up {
+    background-color: #00C030;
+    border: none;
+    color: white;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    height: 35px;
+    width: 200px;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    border-radius: 3px;
+    margin-bottom: 25px;
+}
+#btn-login:hover {
+    background-color: #039427;
+}
+#btn-sign-up:hover {
+    background-color: #039427;
+}
+.google-btn {
+    width: 204px;
+    height: 42px;
+    background-color: #4285F4;
+    border-radius: 2px;
+    box-shadow: 0 3px 4px 0 rgba(0, 0, 0, .25);
+    margin: auto;
+}
+.google-icon-wrapper {
+    position: absolute;
+    margin-top: 1px;
+    margin-left: 1px;
+    width: 40px;
+    height: 40px;
+    border-radius: 2px;
+    background-color:white;
+}
+.google-icon {
+    position: absolute;
+    margin-top: 11px;
+    margin-left: 11px;
+    width: 18px;
+    height: 18px;
+}
+.btn-text {
+    float: right;
+    margin: 11px 11px 0 0;
+    color:white;
+    font-size: 14px;
+    letter-spacing: 0.2px;
+    font-family: "Roboto";
+}
+.google-btn:hover {
+     box-shadow: 0 0 6px #4285F4;
+ }
+.google-btn:active {
+     background: #1868EE;
+}
+
+.modal-footer{
+    background-color: #445566;
+}
+.reviewTag .btn{
+    background-color: #00C030;
+    border: none;
+    color: white;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    height: 45px;
+    width: 30%;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    border-radius: 3px;
+}
+.reviewTag .btn:hover{
+    background-color: #039427;
+}
+.reviewTag input {
+    background-color: #CCDDEE;
+    width: 100%;
+    height: 40px;
+    border-style: none;
+    border-radius: 3px;
+    z-index: 1;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+.reviewTag textarea{
+    background-color: #CCDDEE;
+    width: 100%;
+    height: 300px;
+    border-style: none;
+    border-radius: 3px;
+    z-index: 1;
+    margin-bottom: 10px;
+}
+.reviewTag input:focus {
+    background-color: #ffffff;
+}
+.reviewTag textarea:focus {
+    background-color: #CCDDEE;
+}

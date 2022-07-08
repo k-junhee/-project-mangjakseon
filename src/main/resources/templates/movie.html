@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<link th:href="@{/css/menu.css}" rel="stylesheet"/>
+<link th:href="@{/css/list.css}" rel="stylesheet"/>
+<script th:src="@{https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js}"></script>
+<script th:src="@{/js/movie.js}"></script>
+<th:block th:replace="~{/layout/layout :: setContent(~{this::content})}">
+    <th:block th:fragment="content">
+
+        <div class="listTitle">영화 목록</div>
+        <div class="listGap"></div>
+        <!-- 정렬박스 -->
+        <diV class="listContainer">
+            <div class="sort">
+                <div class="sortBox">정렬</div>
+                <div class="sortBox">
+                    Sort Results By<br>
+                    <select name="sortLte" id="sortLte">
+                        <option>선택하기</option>
+                        <option value="6">TMDb 6점 이하</option>
+                        <option value="10">TMDb 6점 이상</option>
+<!--                        <option>망작선 내림차순</option>-->
+<!--                        <option>망작선 오름차순</option>-->
+                    </select>
+                </div>
+            </div><!-- 정렬박스 끝 -->
+
+            <!--영화 리스트-->
+            <div class="list">
+                <div class="movieList">
+
+                </div>
+
+                    <button class="moreButton">더보기</button>
+            </div><!--영화 리스트 끝-->
+
+            <div class="arrowBox">
+                <a href="#" class="top"><i class="fa-solid fa-arrow-up"></i></a>
+            </div>
+
+        </div>
+    </th:block>
+</th:block>

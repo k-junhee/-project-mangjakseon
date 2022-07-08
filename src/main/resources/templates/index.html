@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<link th:href="@{/css/index.css}" rel="stylesheet"/>
+<th:block th:replace="~{/layout/layout :: setContent(~{this::content})}">
+    <th:block th:fragment="content">
+        <div class="mainContainer">
+            <div class="posterContainer">
+                <!--포스터 필드-->
+                <div class="posterField">
+                    <div id="movieName">
+                        <a href="http://localhost:8181/movie/437633?poster.x=90&poster.y=74&movieId=437633">
+                            <div>리얼 (2017)</div>
+                        </a>
+                    </div>
+                </div><!--포스터 필드끝-->
+            </div>
+            <!--info 텍스트-->
+            <div class="info">
+                <div class="introduce">
+                    <span>망한 영화 중 걸(傑)작을 찾아보세요.</span><br>
+                    <span>누군가에겐 명작인 망작을</span><br>
+                    <span>소개해 주세요.</span>
+                </div>
+                <div class="infoSignUp">
+                    <button data-toggle="modal" data-target="#loginDrop">시작하세요</button>
+                </div>
+                <div class="fromAPI">
+                    <span>우리 사이트는
+                        <a href="https://www.themoviedb.org/">
+                            <img class="tmdbLofo"
+                                 src="https://www.themoviedb.org/assets/2/v4/logos/v2/blue_short-8e7b30f73a4020692ccca9c88bafe5dcb6f8a62a4c6bc55cd9ba82bb2cd95f6c.svg">
+                        </a>
+                        영화 데이터를 사용하고 있습니다.
+                    </span>
+                </div>
+            </div><!--info 텍스트 끝-->
+        </div>
+        <div class="mainContainer2">
+            <div class="movieContainer">
+                <div class="movieLabel">
+                    영화 걸(傑)작선
+                </div>
+                <!--영화 리스트-->
+                <div class="movieList">
+                    <div>
+                        <div class="moviePoster">
+                            <img src="/assets/dummy/PP07091400004.jpg">
+                        </div>
+                        <div class="movieScore">
+                            <span>TMDB 3 망작선 2</span>
+                        </div>
+                        <div class="movieTitle">
+                            D-WAR
+                        </div>
+                    </div>
+
+                    <div>
+                        <div class="moviePoster">
+                            <img src="/assets/dummy/real.jpg">
+                        </div>
+                        <div class="movieScore">
+                            <span>TMDB 2 망작선 1</span>
+                        </div>
+                        <div class="movieTitle">
+                            리얼
+                        </div>
+                    </div>
+                    <div>
+                        <div class="moviePoster">
+                            <img src="/assets/dummy/green.jpg">
+                        </div>
+                        <div class="movieScore">
+                            <span>TMDB 4 망작선 2</span>
+                        </div>
+                        <div class="movieTitle">
+                            그린랜턴
+                        </div>
+                    </div>
+                    <div>
+                        <div class="moviePoster">
+                            <img src="/assets/dummy/c.jpg">
+                        </div>
+                        <div class="movieScore">
+                            <span>TMDB 1 망작선 1</span>
+                        </div>
+                        <div class="movieTitle">
+                            클레멘타인
+                        </div>
+                    </div>
+                    <div>
+                        <div class="moviePoster">
+                            <img src="/assets/dummy/fan.jpg">
+                        </div>
+                        <div class="movieScore">
+                            <span>TMDB 2 망작선 4</span>
+                        </div>
+                        <div class="movieTitle">
+                            판타스틱4
+                        </div>
+                    </div>
+                    <div>
+                        <div class="moviePoster">
+                            <img src="/assets/dummy/vA5AGI0TbXW0MrlvzXuDJ2hGWLi.jpg">
+                        </div>
+                        <div class="movieScore">
+                            <span>TMDB 3 망작선 2</span>
+                        </div>
+                        <div class="movieTitle">
+                            더 서클
+                        </div>
+                    </div>
+                    <div>
+                        <div class="moviePoster">
+                            <img src="/assets/dummy/nbce2bP4thBSzzyujMjf839Lzuj.jpg">
+                        </div>
+                        <div class="movieScore">
+                            <span>TMDB 2 망작선 1</span>
+                        </div>
+                        <div class="movieTitle">
+                            어쌔신 크리드
+                        </div>
+                    </div>
+                    <div>
+                        <div class="moviePoster">
+                            <img src="/assets/dummy/lLlm1cYq640dSsIzUf3mjTsWak6.jpg">
+                        </div>
+                        <div class="movieScore">
+                            <span>TMDB 2 망작선 6</span>
+                        </div>
+                        <div class="movieTitle">
+                            라스트 엑소시즘
+                        </div>
+                    </div>
+                    <div>
+                        <div class="moviePoster">
+                            <img src="/assets/dummy/dragonball.jpg">
+                        </div>
+                        <div class="movieScore">
+                            <span>TMDB 1 망작선 4</span>
+                        </div>
+                        <div class="movieTitle">
+                            드래곤 볼
+                        </div>
+                    </div>
+                    <div>
+                        <div class="moviePoster">
+                            <img src="/assets/dummy/9mXyFgO5D53RsiG605W6deeBheS.jpg">
+                        </div>
+                        <div class="movieScore">
+                            <span>TMDB 3 망작선 5</span>
+                        </div>
+                        <div class="movieTitle">
+                            미이라
+                        </div>
+                    </div>
+                </div>
+            </div><!--영화 리스트 끝-->
+        </div>
+    </th:block>
+</th:block>

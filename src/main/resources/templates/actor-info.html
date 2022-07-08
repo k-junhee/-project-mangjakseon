@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<link th:href="@{/css/actor-info.css}" rel="stylesheet"/>
+
+<th:block th:replace="~{/layout/layout :: setContent(~{this::content})}">
+    <th:block th:fragment="content">
+        <div class="mainContainer">
+            <div class="profile">
+                <img th:src="@{'https://image.tmdb.org/t/p/w500'+${actorData.profile_path}}" onerror="this.src='/assets/null/null.png';">
+            </div>
+            <div class="info">
+                <div class="actorName">
+                    [[${actorData.name}]]
+                </div>
+                <br>
+                <div class="biography">
+                    <span class="title">약력</span><br>
+                    <span class="content">[[${actorData.biography}]]</span>
+                </div>
+                <br>
+                <div class="birthdayAndPlace">
+                    <span class="title">생일</span>
+                    <br>
+                    <span class="content">[[${actorData.birthday}]]</span>
+                    <br>
+                    <span class="title">사는곳</span>
+                    <br>
+                    <span class="content">[[${actorData.place_of_birth}]]</span>
+                </div>
+                <br>
+                <div class="sns">
+                    <a th:if="${not #strings. isEmpty(snsData.instagram_id)}"
+                       th:href="@{'https://www.instagram.com/'+${snsData.instagram_id}}">
+                        <i class="fa-brands fa-instagram"></i>
+                    </a>
+                    &nbsp
+                    <a th:if="${not #strings. isEmpty(snsData.facebook_id)}"
+                       th:href="@{'https://www.facebook.com/'+${snsData.facebook_id}}">
+                        <i class="fa-brands fa-facebook"></i>
+                    </a>
+                    &nbsp
+                    <a th:if="${not #strings. isEmpty(snsData.twitter_id)}"
+                       th:href="@{'https://twitter.com/'+${snsData.twitter_id}}">
+                        <i class="fa-brands fa-twitter"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+        <div class="mainContainer2">
+            <div class="biographyTitle">
+                <span class="title">출현 영화</span>
+            </div>
+
+            <div class="biographyContent">
+                <div class="movie" th:each="actorMovieData : ${actorMovieData}">
+                    <a th:href="@{'/movie/'+${actorMovieData.id}}">
+                        <img th:src="@{'https://image.tmdb.org/t/p/w500'+${actorMovieData.poster_path}}"
+                             onerror="this.src='/assets/logo/whiteLogo.png';"><br>
+                    </a>
+                    <span class="movieTitle">[[${actorMovieData.title}]]</span><br>
+                    <span class="character">[[${actorMovieData.character}]] 역</span>
+                </div>
+            </div>
+        </div>
+    </th:block>
+</th:block>

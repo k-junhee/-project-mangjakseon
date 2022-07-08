@@ -1,0 +1,65 @@
+
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Sign-Up</title>
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M" crossorigin="anonymous">
+    <link href="https://getbootstrap.com/docs/4.0/examples/signin/signin.css" rel="stylesheet" crossorigin="anonymous"/>
+
+    <style>
+        .valid{ color : red }
+    </style>
+
+</head>
+<th:block th:fragment="setLogin(signup)">
+<body>
+<form method="post" action="/register">
+    <h1>회원가입 페이지</h1>
+    <div class="form-group">
+        <label>아이디</label><br>
+        <input type="text" name="email" placeholder="이메일을 입력해주세요"/><br>
+        <span th:if="${valid_email}" class="valid">[[${valid_email}]]</span>
+    </div>
+
+    <div>
+        <div class="form-group">
+            <label>비밀번호</label><br>
+            <input type="password" id="password" name="password" placeholder="비밀번호를 입력해주세요"/><br>
+            <span th:if="${valid_password}" class="valid">[[${valid_password}]]</span>
+        </div>
+        <label>비밀번호 확인</label><br>
+        <input type="password" id="passwordConfirm" placeholder="비밀번호를 다시 입력해주세요"
+        onkeyup="passConfirm()"/>
+        <span id="confirmMsg"></span>
+    </div>
+
+    <div class="form-group">
+        <label>닉네임</label><br>
+        <input type="text" name="nickname" placeholder="닉네임을 입력해주세요"/><br>
+        <span th:if="${valid_nickname}" class="valid">[[${valid_nickname}]]</span>
+    </div>
+
+    <button type="submit">등록</button>
+
+    <script>
+        function passConfirm(){
+            var password = document.getElementById('password');
+            var passwordConfirm = document.getElementById('passwordConfirm');
+            var confirmMsg = document.getElementById('confirmMsg');
+            var correctColor = "#00ff00";
+            var incorrectColor = "#ff0000";
+
+            if (password.value == passwordConfirm.value) {
+                confirmMsg.style.color = correctColor;
+                confirmMsg.innerHTML = "비밀번호 일치";
+            } else {
+                confirmMsg.style.color = incorrectColor;
+                confirmMsg.innerHTML = "비밀번호 불일치";
+            }
+        }
+    </script>
+</form>
+</body>
+</th:block>
+</html>

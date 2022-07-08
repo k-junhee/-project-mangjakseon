@@ -1,0 +1,24 @@
+@charset "UTF-8";
+.footerGap{
+    background-color: #14181C;
+    height: 50px;
+}
+.footer{
+    background-color: #2C3440;
+    width: 100%;
+    height: 100px;
+    display: grid;
+    grid-template-columns: 100%;
+    grid-template-rows: 50px 50px;
+    justify-items: center;
+}
+.footerMenu{
+    /*background-color: #0BAF2F;*/
+    width: 45%;
+}
+.footerCopyright{
+    /*background-color: coral;*/
+    width: 45%;
+    color: #99AABB;
+    font-size: 12px;
+}

@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<link th:href="@{/css/read.css}" rel="stylesheet"/>
+<link th:href="@{/css/menu.css}" rel="stylesheet"/>
+<th:block th:replace="~{/layout/layout :: setContent(~{this::content})}">
+    <th:block th:fragment="content">
+        <div class="listTitle">회원 정보</div>
+        <div class="listGap"></div>
+        <input type="hidden" name="memberId" th:value="${dto.memberId}">
+        <input type="hidden" name="fromSocial" th:value="${dto.fromSocial}">
+        <div class="memberInfo">
+            <div class="profileImage">
+                <img th:src="@{${'/profile_images/'+dto.profileImage}}" onerror="this.src='/assets/null/null.png';"/><br>
+                <span>[[${dto.nickname}]]</span>
+            </div>
+            <div class="infoView">
+                <span>이메일</span><br><input type="text" name="email" th:value="${dto.email}" readonly><br>
+                <span>비밀번호</span><br><input type="password" name="password" th:value="${dto.password}" readonly><br>
+                <span>닉네임</span><br><input type="text" name="nickname" th:value="${dto.nickname}" readonly>
+                <div class="button">
+                    <a href="/modify"><button class="modify">수정하기</button></a>
+                    <form method="post" th:action="@{/remove(memberId=${dto.memberId})}">
+                        <button class="delete" type="submit">회원탈퇴</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </th:block>
+</th:block>

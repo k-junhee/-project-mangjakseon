@@ -1,0 +1,157 @@
+@charset "UTF-8";
+.mainContainer{
+    background-color: #14181C;
+    height: 850px;
+}
+.posterContainer{
+    background: linear-gradient(
+            to left,
+            rgba(20, 24, 28, 0) 10%,
+            rgba(20, 24, 28, 0) 25%,
+            rgba(20, 24, 28, 0) 50%,
+            rgba(20, 24, 28, 0.3) 80%,
+            rgba(20, 24, 28, 1) 100%
+    ),linear-gradient(
+            to right,
+            rgba(20, 24, 28, 0) 10%,
+            rgba(20, 24, 28, 0) 25%,
+            rgba(20, 24, 28, 0) 50%,
+            rgba(20, 24, 28, 0.3) 80%,
+            rgba(20, 24, 28, 1) 100%
+    ),linear-gradient(
+            to bottom,
+            rgba(20, 24, 28, 0) 10%,
+            rgba(20, 24, 28, 0) 25%,
+            rgba(20, 24, 28, 0) 50%,
+            rgba(20, 24, 28, 0.1) 90%,
+            rgba(20, 24, 28, 1) 100%
+    ),linear-gradient(
+            to top,
+            rgba(20, 24, 28, 0) 10%,
+            rgba(20, 24, 28, 0) 25%,
+            rgba(20, 24, 28, 0) 50%,
+            rgba(20, 24, 28, 0.1) 90%,
+            rgba(20, 24, 28, 1) 100%
+    ),
+    url("/assets/dummy/2426E33A592C233F07.jpg");
+    background-size: cover;
+    border-radius: 50px;
+    width: 60%;
+    height: 560px;
+    margin: auto;
+
+}
+
+.posterField{
+    /*background-color: gray;*/
+    position: relative;
+    height: 560px;
+}
+#movieName {
+    position: absolute;
+    right: 0;
+    bottom: 0;
+}
+#movieName a{
+    text-decoration: none;
+    color: #676767;
+    font-size: 12px;
+}
+#movieName div{
+    z-index: 5;
+}
+#movieName a:hover{
+    text-decoration: none;
+    color: #818181;
+}
+.info{
+    /*background-color: aqua;*/
+    margin: auto;
+    width: 50%;
+    text-align: center;
+}
+.tmdbLofo{
+    width: 13%;
+}
+.introduce{
+    font-size: 32px;
+    color: white;
+    margin-top: -50px;
+    margin-bottom: 25px;
+}
+.infoSignUp button{
+    background-color: #00C030;
+    border: none;
+    color: white;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    height: 35px;
+    width: 200px;
+    font-size: 16px;
+    cursor: pointer;
+    border-radius: 7px;
+    margin-bottom: 25px;
+}
+.infoSignUp button:hover{
+    background-color: #0BAF2F;
+}
+.infoSignUp button:focus{
+    outline:none;
+}
+.fromAPI{
+    color: #717F8E;
+    font-size: 12px;
+}
+.mainContainer2{
+    background-color: #14181C;
+    width: 100%;
+    height: auto;
+}
+.movieContainer{
+    /*background-color: chartreuse;*/
+    margin: auto;
+    width: 45%;
+}
+.movieLabel{
+    /*background-color: burlywood;*/
+    color: white;
+    margin-left: 15px;
+    margin-bottom: 30px;
+}
+.movieList{
+    /*background-color: darkblue;*/
+    text-align: center;
+    height: auto;
+    display: grid;
+    grid-template-columns: 20% 20% 20% 20% 20%;
+    grid-row-gap: 40px;
+}
+.movieList div:hover {
+    color: #3976DC;
+}
+.movieList div {
+    color: #ffffff;
+}
+.movieScore{
+    margin-left: 15px;
+    text-align: left!important;
+    font-size: 12px;
+}
+.movieTitle{
+    margin-left: 15px;
+    text-align: left!important;
+}
+.moviePoster img{
+    width: 150px;
+    height: 230px;
+    border-radius: 7px;
+    object-fit: cover;
+}
+.moviePoster img:hover{
+    filter: brightness(50%);
+}
+.tmdbLofo:hover{
+    filter: brightness(80%);
+}
+

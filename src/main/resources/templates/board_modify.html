@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+
+<style>
+    *{
+      color:white;
+    }
+
+     .form-group{
+      margin-left:auto;
+      margin-right:auto;
+      padding-top:25px;
+    }
+
+    .modifyBtn{
+        background-color: #00C030;
+        border: none;
+        color: white;
+        text-align: center;
+        text-decoration: none;
+        cursor: pointer;
+        border-radius: 3px;
+        font-size: 20px;
+        font-weight: bold;
+        padding: 5px 5px 5px 5px;
+    }
+    .removeBtn{
+        background-color: #00C030;
+        border: none;
+        color: white;
+        text-align: center;
+        text-decoration: none;
+        cursor: pointer;
+        border-radius: 3px;
+        font-size: 20px;
+        font-weight: bold;
+        padding: 5px 5px 5px 5px;
+    }
+    .listBtn{
+        background-color: #00C030;
+        border: none;
+        color: white;
+        text-align: center;
+        text-decoration: none;
+        cursor: pointer;
+        border-radius: 3px;
+        font-size: 20px;
+        font-weight: bold;
+        padding: 5px 5px 5px 5px;
+    }
+    .Btn{
+        padding-left: 20%;
+    }
+
+    .modify-page{
+        width: 60%;
+        margin: 0 auto;
+    }
+</style>
+
+<th:block th:replace="~{/layout/layout :: setContent(~{this::content} )}">
+
+    <th:block th:fragment="content">
+
+        <header>
+
+            <form action="/board_modify" method="post">
+
+                <!--페이지 번호  -->
+                <input type="hidden" name="page" th:value="${requestDTO.page}">
+                <input type="hidden" name="type" th:value="${requestDTO.type}" >
+                <input type="hidden" name="keyword" th:value="${requestDTO.keyword}" >
+
+                <div class="modify-page">
+                    <div class="form-group">
+                        <label>글번호</label>
+                        <input type="text" class="form-control" name="bno" th:value="${dto.bno}" style="background-color: #CCDDEE;" readonly >
+                    </div>
+
+                    <div class="form-group">
+                        <label>제목</label>
+                        <input type="text" class="form-control" name="b_title" th:value="${dto.b_title}" >
+                    </div>
+                    <div class="form-group">
+                        <label>내용</label>
+                        <textarea class="form-control" rows="5" name="b_content">[[${dto.b_content}]]</textarea>
+                    </div>
+                    <div class="form-group">
+                        <label>작성자</label>
+                        <input type="text" class="form-control" name="writer" th:value="${dto.writer}" style="background-color: #CCDDEE;" readonly>
+                    </div>
+                    <div class="form-group">
+                        <label >작성일</label>
+                        <input type="text" class="form-control" th:value="${#temporals.format(dto.regDate, 'yyyy/MM/dd HH:mm:ss')}" style="background-color: #CCDDEE;" readonly>
+                    </div>
+                    <div class="form-group">
+                        <label >수정일</label>
+                        <input type="text" class="form-control" th:value="${#temporals.format(dto.modDate, 'yyyy/MM/dd HH:mm:ss')}" style="background-color: #CCDDEE;" readonly>
+                    </div>
+                </div>
+
+            </form>
+            <div sec:authorize="hasRole('ROLE_ADMIN')" >
+                <div class="Btn">
+                    <button type="button" class="modifyBtn">수정완료</button>
+
+                    <button type="button" class="listBtn">목록</button>
+
+                    <button type="button" class="removeBtn">삭제</button>
+                </div>
+            </div>
+            <script th:inline="javascript">
+
+            var actionForm = $("form"); //form 태그 객체
+
+            $(".removeBtn").click(function(){
+
+            if(!confirm("삭제하시겠습니까?")){
+                    return ;
+                }
+
+                actionForm
+                    .attr("action", "/board_remove")
+                    .attr("method","post");
+
+                actionForm.submit();
+
+            });
+
+            $(".modifyBtn").click(function() {
+
+                if(!confirm("수정하시겠습니까?")){
+                    return ;
+                }
+
+                actionForm
+                    .attr("action", "/board_modify")
+                    .attr("method","post")
+                    .submit();
+            });
+
+            $(".listBtn").click(function() {
+
+                var pageInfo = $("input[name='page']");
+
+                actionForm.empty(); //form 태그의 모든 내용을 지우고
+                actionForm.append(pageInfo); // 목록 페이지 이동에 필요한 내용을 다시 추가
+
+                actionForm
+                    .attr("action", "/board_list")
+                    .attr("method","get");
+
+               actionForm.submit();
+
+            })
+
+            </script>
+
+        </header>
+
+
+    </th:block>
+
+</th:block>

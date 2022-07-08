@@ -1,0 +1,68 @@
+@charset "UTF-8";
+
+*{
+    padding: 0;
+    margin: 0;
+}
+.actorList {
+    /*background-color: #00C030;*/
+    width: 60%;
+    height: auto;
+    margin: auto;
+    display: grid;
+    grid-template-columns: 20% 20% 20% 20% 20%;
+    grid-row-gap: 40px;
+}
+.actorImg input{
+    width: 200px;
+    height: 230px;
+    border-radius: 7px;
+    object-fit: cover;
+}
+.actorImg input:hover{
+    filter: brightness(50%);
+}
+.dataId{
+    display: none;
+}
+.actorName{
+    color: white;
+    font-size: 18px;
+    font-weight: bold;
+}
+.moreButton{
+    background-color: #445566;
+    color: #91A3AC;
+    border: 1px #303840 solid;
+    border-radius: 5px;
+    font-size: 22px;
+    width: 100%;
+    height: 50px;
+    margin-top: 15px;
+}
+.moreButton:hover{
+    background-color: #394956;
+    color: #c1d0d3;
+}
+a.top {
+    background-color: #445566;
+    color: #bbbbbb;
+    padding: 20px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    cursor: pointer;
+    border-radius: 50%;
+    height: 60px;
+}
+a.top:hover{
+    background-color: #394856;
+    color: #d0cfcf;
+}
+.arrowBox{
+    position:fixed;
+    right: 10px;
+    bottom:10px;
+}

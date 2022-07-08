@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<link th:href="@{/css/movie-info.css}" rel="stylesheet"/>
+<link th:href="@{/css/star-rating-svg.css}" rel="stylesheet"/>
+<script th:src="@{https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js}"></script>
+<script th:src="@{/js/review.js}"></script>
+<script th:src="@{/js/jquery.star-rating-svg.js}"></script>
+<th:block th:replace="~{/layout/layout :: setContent(~{this::content})}">
+    <th:block th:fragment="content">
+        <div class="mainContainer">
+            <div class="posterContainer"
+                 th:style="
+                 'background-image: linear-gradient(
+                    to left,
+                    rgba(20, 24, 28, 0) 10%,
+                    rgba(20, 24, 28, 0) 25%,
+                    rgba(20, 24, 28, 0) 50%,
+                    rgba(20, 24, 28, 0.3) 80%,
+                    rgba(20, 24, 28, 1) 100%
+                    ),linear-gradient(
+                    to right,
+                    rgba(20, 24, 28, 0) 10%,
+                    rgba(20, 24, 28, 0) 25%,
+                    rgba(20, 24, 28, 0) 50%,
+                    rgba(20, 24, 28, 0.3) 80%,
+                    rgba(20, 24, 28, 1) 100%
+                    ),linear-gradient(
+                    to bottom,
+                    rgba(20, 24, 28, 0) 10%,
+                    rgba(20, 24, 28, 0) 25%,
+                    rgba(20, 24, 28, 0) 50%,
+                    rgba(20, 24, 28, 0.1) 90%,
+                    rgba(20, 24, 28, 1) 100%
+                    ),linear-gradient(
+                    to top,
+                    rgba(20, 24, 28, 0) 10%,
+                    rgba(20, 24, 28, 0) 25%,
+                    rgba(20, 24, 28, 0) 50%,
+                    rgba(20, 24, 28, 0.1) 90%,
+                    rgba(20, 24, 28, 1) 100%
+                    ),
+                    url('+ 'https://image.tmdb.org/t/p/w1280'+${movieData.backdrop_path} +')'">
+
+            </div>
+        </div>
+        <div class="mainContainer2">
+            <!--영화소개-->
+            <div class="movieReviewContainer">
+                <div class="movingPoster">
+                    <div class="posterBox">
+                        <img th:src="@{'https://image.tmdb.org/t/p/w500'+${movieData.poster_path}}">
+                    </div>
+                    <div class="posterRanking">
+                        <i class="fa-solid fa-eye"></i>
+                        <span>24</span>&nbsp;
+                        <i class="fa-solid fa-crown"></i>
+                        <span>53</span>
+                        <span>TMDb</span>
+                        <span>[[${movieData.vote_average}]]</span>
+                    </div>
+                    <div class="whereToWatch">
+                        <div class="watchTitle">
+                            <div>
+                                WHERE TO WATCH
+                            </div>
+                            <div>
+                                <i class="fa-brands fa-youtube"></i>&nbsp;Trailer
+                            </div>
+                            <div class="ottLogo">
+                                <img th:if="${not #strings. isEmpty(watchLogo)}"
+                                     th:src="@{'https://image.tmdb.org/t/p/w200'+${watchLogo.logo_path}}">
+                            </div>
+                            <div class="ottLogo">
+                                <a th:if="${not #strings. isEmpty(watchLink)}" th:href="${watchLink.link}">
+                                    [[${watchLogo.provider_name}]]
+                                </a>
+                            </div>
+                        </div>
+
+                    </div>
+
+                </div>
+                <div class="movieReviewTitle">
+                    <span>[[${movieData.title}]]</span>
+                    <span th:if="${director != null}">
+                        [[${movieData.release_date}]]
+                        <span class="directedBy">Directed by</span>
+                        [[${director.name}]]
+                    </span>
+                </div>
+                <div class="movieContent">
+                    <div class="textContent">
+                        [[${movieData.overview}]]
+                    </div>
+                    <div class="castContent">
+                        <div class="castTitle">
+                            주요 출연진
+                        </div>
+                        <div class="castPicture">
+                            <div class="castItem">
+                                <div class="castFace" th:each="castData : ${castData}">
+                                    <a th:href="@{'/actor/'+${castData.id}}">
+                                        <img class="profile"
+                                             th:src="@{'https://image.tmdb.org/t/p/w500'+${castData.profile_path}}"
+                                             onerror="this.src='/assets/null/null.png';"/>
+                                    </a>
+                                    <div class="castName">
+                                        <span>[[${castData.name}]]</span>
+                                        <span>[[${castData.character}]]</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="movieScoreField">
+                    <div class="watch">
+                        <i class="fa-solid fa-eye"></i><br>
+                    </div>
+                    <div class="writeReview" th:if="${movieData.vote_average <= 6}" id="reviewModalButton" data-toggle="modal" data-target="#staticBackdrop">
+                    리뷰 쓰기
+                </div>
+                <div class="writeReview" th:if="${movieData.vote_average > 6}">
+                    TMDb 평점 기준 6점 이하만<br> 작성 가능합니다.
+                </div>
+                <input type="hidden" id="userInfo" th:value="${userCode}">
+            </div>
+        </div><!--영화소개 끝-->
+        </div>
+
+        <!--리뷰 쓰기 박스 -->
+        <div class="reviewListContainer">
+            <div class="reviewItem" th:if="${movieData.vote_average <= 6}">
+                <div class="castTitle">
+                    BEST 리뷰
+                </div>
+                <div class="bestReviewContent" style="text-align: center; color: white">
+                    서비스 준비중 입니다.
+                </div>
+                <div class="castTitle">
+                    리뷰
+                </div>
+                <div class="list-group reviewContent1">
+
+                </div>
+            </div>
+        </div><!-- 리뷰 쓰기 박스 끝-->
+
+        <!-- Modal -->
+        <div class="modal fade" id="staticBackdrop" data-backdrop="static" tabindex="-1" role="dialog"
+             aria-labelledby="staticBackdropLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="staticBackdropLabel">리뷰</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+
+                        <!-- 별점, 점수 -->
+                        <!-- 별크기 svg.js starSize -->
+                        <input class="live-rating-form" type="hidden" name="score" value="null">
+                        <span class="my-rating-9"></span><!-- 별점, 점수 끝-->
+
+                        <!-- 리뷰 제목,내용,전송버튼 -->
+                        <div class="reviewTag">
+                            <div>
+                                <input type="text" class="reviewTitle" name="reviewTitle" placeholder="제목을 입력해주세요">
+                                <input type="hidden" name="reviewNum">
+                            </div>
+                            <div>
+                                <textarea class="reviewContent" name="reviewContent"
+                                          placeholder="내용을 입력해주세요"></textarea>
+                            </div>
+
+                            <button type="button" class="btn btn-primary reviewRemove" data-dismiss="modal">삭제</button>
+                            <button type="button" class="btn btn-primary reviewSave" data-dismiss="modal">등록</button>
+                            <button type="button" class="btn btn-primary reviewModify" data-dismiss="modal">수정</button>
+
+                        </div>
+                            <input class="movieId" type="hidden" name="movieId" th:value='${movieData.id}' checked>
+                            <input class="movieId" type="hidden" name="memberId" th:value='${writer.memberId}' checked>
+                            <input class="movieId" type="hidden" name="nickName" th:value='${writer.nickname}' checked>
+                            <input class="movieId" type="hidden" name="profileImage" th:value='${writer.profileImage}' checked>
+                    </div>
+
+                </div><!-- 리뷰 제목,내용,전송버튼 끝 -->
+            </div>
+        </div><!-- Modal 끝 -->
+
+    </th:block>
+</th:block>

@@ -1,0 +1,11 @@
+@charset "UTF-8";
+.listTitle{
+    width: 60%;
+    margin: auto;
+    color: white;
+    font-size: 35px;
+    border-bottom: 1px #445566 solid;;
+}
+.listGap{
+    height: 30px;
+}
